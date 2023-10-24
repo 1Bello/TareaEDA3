@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include<string>
 using namespace std;
 
 int impo(char c){
@@ -9,7 +10,7 @@ int impo(char c){
     if (c == '+' || c == '-')
         return 1;
     else 
-    return 0;
+        return 0;
 }
 
 void InfixtoPostfix(string s){
