@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include<string>
 using namespace std;
 
 int impo(char c){
@@ -49,6 +48,17 @@ void InfixtoPostfix(string s){
 }
 
 int main(){
+
+    string input;
+
+    while(true){
+        cout << " Calculadora interactiva ";
+        cout << " Ingrese una expresion o FIN para salir: ";
+        getline(cin,input);
+
+        if(input=="FIN") break;
+
+    }
 
     string ec = "";
 
