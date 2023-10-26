@@ -1,0 +1,3 @@
+/home/edauandes/Downloads/eda/TareaEDA3/build/CMakeFiles/main.dir
+/home/edauandes/Downloads/eda/TareaEDA3/build/CMakeFiles/edit_cache.dir
+/home/edauandes/Downloads/eda/TareaEDA3/build/CMakeFiles/rebuild_cache.dir
