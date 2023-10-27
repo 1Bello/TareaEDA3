@@ -14,27 +14,44 @@ int impo(char c) {
 
 void InfixtoPostfix(string s, vector<string>& postfix) {
     stack<char> stck;
+    string num;
 
     for (int i = 0; i < s.length(); i++) {
         char c = s[i];
 
-        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || isdigit(c))
-            postfix.push_back(string(1, c));
-        else if (c == '(')
-            stck.push(c);
-        else if (c == ')') {
-            while (stck.top() != '(') {
-                postfix.push_back(string(1, stck.top()));
-                stck.pop();
-            }
-            stck.pop();
-        } else {
-            while (!stck.empty() && impo(s[i]) <= impo(stck.top())) {
-                postfix.push_back(string(1, stck.top()));
-                stck.pop();
-            }
-            stck.push(c);
+        if (c == ' ') {
+            num.clear();
+            continue; 
         }
+
+        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || isdigit(c)) {
+            num += c; 
+        } else {
+            if (!num.empty()) {
+                postfix.push_back(num);
+                num.clear();
+            }
+
+            if (c == '(')
+                stck.push(c);
+            else if (c == ')') {
+                while (stck.top() != '(') {
+                    postfix.push_back(string(1, stck.top()));
+                    stck.pop();
+                }
+                stck.pop();
+            } else {
+                while (!stck.empty() && impo(s[i]) <= impo(stck.top())) {
+                    postfix.push_back(string(1, stck.top()));
+                    stck.pop();
+                }
+                stck.push(c);
+            }
+        }
+    }
+
+    if (!num.empty()) {
+        postfix.push_back(num);
     }
 
     while (!stck.empty()) {
@@ -42,7 +59,6 @@ void InfixtoPostfix(string s, vector<string>& postfix) {
         stck.pop();
     }
 }
-
 int evaluatePostfix(const vector<string>& postfix, map<string, int>& variables) {
     stack<int> st;
     
@@ -98,6 +114,5 @@ int main() {
             cout << "Resultado: " << result << endl;
         }
     }
-
     return 0;
 }
