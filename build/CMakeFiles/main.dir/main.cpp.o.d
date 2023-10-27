@@ -1,5 +1,4 @@
-CMakeFiles/main.dir/main.cpp.o: \
- /home/edauandes/Downloads/eda/TareaEDA3/main.cpp \
+CMakeFiles/main.dir/main.cpp.o: /home/edauandes/Tarea3_EDA/main.cpp \
  /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/stdc++.h \
  /usr/include/c++/11/cassert \
