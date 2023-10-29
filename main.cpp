@@ -36,14 +36,9 @@ int ans;
 void InfixtoPostfix(string s, vector<string>& postfix) {
     stack<char> stck;
     string num;
-
     for (int i = 0; i < s.length(); i++) {
         char c = s[i];
-
-        if (c == ' ') {
-            continue;
-        }
-
+        if (c == ' ') continue;
         if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || isdigit(c)) {
             num += c; 
         } else {
@@ -51,7 +46,6 @@ void InfixtoPostfix(string s, vector<string>& postfix) {
                 postfix.push_back(num);
                 num.clear();
             }
-
             if (c == '(')
                 stck.push(c);
             else if (c == ')') {
@@ -69,33 +63,24 @@ void InfixtoPostfix(string s, vector<string>& postfix) {
             }
         }
     }
-
-    if (!num.empty()) {
-        postfix.push_back(num);
-    }
-
+    if (!num.empty()) postfix.push_back(num);
     while (!stck.empty()) {
         postfix.push_back(string(1, stck.top()));
         stck.pop();
     }
-
     num.clear();
 }
 
 float evaluatePostfix(const vector<string>& postfix, map<string, float>& variables) {
     stack<float> st;
-    
     for (const string& token : postfix) {
         if (isnum(token)) { // fue util lo que encontramos en: https://cplusplus.com/reference/cctype/isdigit/
-            st.push(stof(token));  // Si es un número, apílalo
+            st.push(stof(token));
         } else if (isvar(token)) { // fue util lo que encontramos en: https://cplusplus.com/reference/cctype/isalpha/
-            // Es una variable, obtén su valor del mapa y apílalo
             st.push(variables[token]);
         } else if (isop(token[0])){
-            
             float operand2 = st.top(); st.pop();
             float operand1 = st.top(); st.pop();
-
             if (token == "+") {
                 st.push(operand1 + operand2);
             } else if (token == "-") {
@@ -109,7 +94,6 @@ float evaluatePostfix(const vector<string>& postfix, map<string, float>& variabl
             }
         }
     }
-
     return st.top();  // El resultado final estará en el tope de la pila
 }
 
@@ -119,10 +103,8 @@ void Generate_tree(const vector<string>& tree){
     for (const string& token : tree) {
         if (isnum(token)) { 
             sttree.push(new trees::ABBNode(token));
-
         } else if (isvar(token)) {
             sttree.push(new trees::ABBNode(token));
-
         } else if (isop(token[0])) {
             trees::ABBNode* root = new trees::ABBNode(token);
             root->setLeft(sttree.top());
@@ -152,7 +134,6 @@ int main() {
             Generate_tree(tree);
             continue;
         }
-
         if (input.find('=') != string::npos) {
             // Procesar la asignación de variable
             vector<string> postfix;
